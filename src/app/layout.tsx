@@ -50,7 +50,7 @@ export default function RootLayout({
         <link rel="icon" type="image/png" sizes="16x16" href="/icon-16x16.png" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased h-full overflow-hidden`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}
       >
         <NextAuthProvider>
           <AuthShell>
