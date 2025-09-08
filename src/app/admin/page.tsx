@@ -1,16 +1,18 @@
 "use client";
 
-import { useSession } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { Button } from "@/components/ui/button";
 
-export default function DashboardPage() {
+export default function AdminPage() {
   const { status } = useSession();
   const router = useRouter();
 
   useEffect(() => {
     if (status === "unauthenticated") {
       router.push("/");
+      return;
     }
   }, [status, router]);
 
@@ -26,7 +28,17 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center">
-      <div className="text-center text-foreground">Dashboard</div>
+      <div className="text-center text-foreground space-y-6">
+        <div>Admin</div>
+        <div>
+          <Button
+            variant="outline"
+            onClick={() => signOut({ callbackUrl: "/" })}
+          >
+            Log out
+          </Button>
+        </div>
+      </div>
     </div>
   );
 }

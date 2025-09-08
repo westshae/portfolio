@@ -9,15 +9,15 @@ export default function LandingPage() {
   const { data: session, status } = useSession();
   const router = useRouter();
 
-  // Redirect authenticated users to dashboard
+  // Redirect authenticated users to admin
   useEffect(() => {
     if (session && status === "authenticated") {
-      router.push("/dashboard");
+      router.push("/admin");
     }
   }, [session, status, router]);
 
-  const handleGoogleSignIn = async () => {
-    await signIn("google", { callbackUrl: "/dashboard" });
+  const handleAdminSignIn = async () => {
+    await signIn("google", { callbackUrl: "/admin" });
   };
 
   if (status === "loading") {
@@ -41,12 +41,12 @@ export default function LandingPage() {
           
           <div>
             <Button 
-              onClick={handleGoogleSignIn} 
+              onClick={handleAdminSignIn} 
               variant="outline"
               size="lg"
               className="px-8 py-3"
             >
-              Sign In with Google
+              Sign in as admin
             </Button>
           </div>
         </div>

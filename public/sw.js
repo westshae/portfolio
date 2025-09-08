@@ -1,7 +1,7 @@
 const CACHE_NAME = 'properhabits-v1';
 const urlsToCache = [
   '/',
-  '/dashboard',
+  '/admin',
   '/manifest.json'
 ];
 

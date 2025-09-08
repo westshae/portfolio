@@ -31,6 +31,16 @@ export const authOptions: NextAuthOptions = {
   ],
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
+    async signIn({ account, profile }) {
+      if (account?.provider === "google" && profile) {
+        const gp = profile as GoogleProfile;
+        const email = gp.email ?? null;
+        const adminEmail = process.env.ADMIN_EMAIL ?? "";
+        if (!email) return false;
+        return email.toLowerCase() === adminEmail.toLowerCase();
+      }
+      return false;
+    },
     async jwt({ token, account, profile }) {
       if (account?.provider === "google" && profile) {
         const gp = profile as GoogleProfile;
@@ -77,5 +87,9 @@ export const authOptions: NextAuthOptions = {
       }
       return s as unknown as typeof session;
     },
+  },
+  pages: {
+    signIn: "/",
+    error: "/",
   },
 };
