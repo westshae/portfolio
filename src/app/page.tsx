@@ -1,24 +1,11 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { useSession, signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useSession } from "next-auth/react";
 
 export default function LandingPage() {
-  const { data: session, status } = useSession();
-  const router = useRouter();
+  const { status } = useSession();
 
-  // Redirect authenticated users to admin
-  useEffect(() => {
-    if (session && status === "authenticated") {
-      router.push("/admin");
-    }
-  }, [session, status, router]);
-
-  const handleAdminSignIn = async () => {
-    await signIn("google", { callbackUrl: "/admin" });
-  };
+  // No redirect from landing; admin sign-in is on /admin
 
   if (status === "loading") {
     return (
@@ -39,16 +26,7 @@ export default function LandingPage() {
             <h1 className="text-3xl font-semibold text-gray-900">Welcome</h1>
           </div>
           
-          <div>
-            <Button 
-              onClick={handleAdminSignIn} 
-              variant="outline"
-              size="lg"
-              className="px-8 py-3"
-            >
-              Sign in as admin
-            </Button>
-          </div>
+          <div />
         </div>
       </div>
     </div>

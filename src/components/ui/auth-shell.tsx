@@ -9,13 +9,12 @@ interface AuthShellProps {
 
 // Wraps authenticated pages to provide global navigation and spacing
 export function AuthShell({ children }: AuthShellProps) {
-  const pathname = usePathname();
-  const isLanding = pathname === "/";
+  usePathname();
 
   return (
     <div className="flex flex-col min-h-screen">
-      {!isLanding && <NavBar />}
-      <div className={`flex-1 ${!isLanding ? "pb-16 md:pb-0" : ""}`}>
+      <NavBar />
+      <div className={`flex-1`}>
         {children}
       </div>
     </div>

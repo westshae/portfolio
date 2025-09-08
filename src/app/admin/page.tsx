@@ -24,7 +24,10 @@ export default function AdminPage() {
     );
   }
 
-  if (status === "unauthenticated") return null;
+  if (status === "unauthenticated") {
+    router.push("/admin/login");
+    return null;
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center">
