@@ -8,6 +8,13 @@
       "when": 1757330099345,
       "tag": "0000_striped_nova",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1757336583101,
+      "tag": "0001_romantic_the_hand",
+      "breakpoints": true
     }
   ]
 }
